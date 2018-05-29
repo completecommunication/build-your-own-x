@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// Block in the blockchain
+// Block represents each 'item' in the blockchain
 type Block struct {
 	Index     int
 	Timestamp string

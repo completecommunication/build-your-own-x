@@ -1,6 +1,6 @@
 package blockchain
 
-// Blockchain has all the blocks in the Blockchain
+// Blockchain is a series of validated Blocks
 var Blockchain []Block
 
 func replaceChain(newBlocks []Block) {
