@@ -6,6 +6,8 @@ import (
 	"github.com/davecgh/go-spew/spew"
 )
 
+const difficulty = 1
+
 // Blockchain is a series of validated Blocks
 var Blockchain []Block
 
@@ -18,12 +20,15 @@ func replaceChain(newBlocks []Block) {
 // CreateGenesis chain
 func CreateGenesis() {
 	t := time.Now()
-	genesisBlock := Block{
-		Index:     0,
-		Timestamp: t.String(),
-		BPM:       0,
-		Hash:      "",
-		PrevHash:  "",
+	genesisBlock := Block{}
+	genesisBlock = Block{
+		Index:      0,
+		Timestamp:  t.String(),
+		BPM:        0,
+		Hash:       genesisBlock.calculateHash(),
+		PrevHash:   "",
+		Difficulty: difficulty,
+		Nonce:      "",
 	}
 	spew.Dump(genesisBlock)
 
