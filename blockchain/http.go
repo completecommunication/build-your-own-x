@@ -17,8 +17,8 @@ type Message struct {
 	BPM int
 }
 
-// ListenAndServe to the blockchain HTTP server
-func ListenAndServe() error {
+// HTTPListenAndServe to the server
+func HTTPListenAndServe() error {
 	router := createMuxRouter()
 	httpAddr := os.Getenv("ADDR")
 
