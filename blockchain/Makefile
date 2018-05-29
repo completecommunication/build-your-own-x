@@ -19,5 +19,5 @@ coverage:
 analysis:
 	gometalinter --vendor ./... --disable-all --enable=gofmt --enable=golint --enable=vet --enable=errcheck
 
-main:
-	go run cmd/blockchain/main.go
+http:
+	go run cmd/http/main.go
