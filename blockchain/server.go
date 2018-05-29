@@ -37,9 +37,9 @@ func ListenAndServe() error {
 
 func createMuxRouter() http.Handler {
 	muxRouter := mux.NewRouter()
-
 	muxRouter.HandleFunc("/", handleGetBlockchain).Methods("GET")
 	muxRouter.HandleFunc("/", handleWriteBlock).Methods("POST")
+
 	return muxRouter
 }
 
@@ -50,7 +50,7 @@ func handleGetBlockchain(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	io.WriteString(w, string(bytes))
+	_, _ = io.WriteString(w, string(bytes))
 }
 
 func handleWriteBlock(w http.ResponseWriter, r *http.Request) {
@@ -61,7 +61,9 @@ func handleWriteBlock(w http.ResponseWriter, r *http.Request) {
 		respondWithJSON(w, r, http.StatusBadRequest, r.Body)
 		return
 	}
+
 	defer r.Body.Close()
+
 	block := Blockchain[len(Blockchain)-1]
 
 	newBlock, err := block.generateBlock(m.BPM)
@@ -82,9 +84,10 @@ func respondWithJSON(w http.ResponseWriter, r *http.Request, code int, payload i
 	response, err := json.MarshalIndent(payload, "", "  ")
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("HTTP 500: Internal Server Error"))
+		_, _ = w.Write([]byte("HTTP 500: Internal Server Error"))
 		return
 	}
+
 	w.WriteHeader(code)
-	w.Write(response)
+	_, _ = w.Write(response)
 }
