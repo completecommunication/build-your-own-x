@@ -21,3 +21,6 @@ analysis:
 
 http:
 	go run cmd/http/main.go
+
+tcp:
+	go run cmd/tcp/main.go

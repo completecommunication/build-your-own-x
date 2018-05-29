@@ -9,5 +9,5 @@ import (
 func main() {
 	go blockchain.CreateGenesis()
 
-	log.Fatal(blockchain.HTTPListenAndServe())
+	log.Fatal(blockchain.TCPListenAndServe())
 }
